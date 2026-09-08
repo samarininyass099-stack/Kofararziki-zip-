@@ -1,0 +1,118 @@
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    body {
+        background: white;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Hide all input elements when printing */
+    .header,
+    .input-panel,
+    .form-actions,
+    .preview-actions,
+    .footer,
+    .btn {
+        display: none !important;
+    }
+
+    .main-content {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    .panel {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        background: white;
+        page-break-after: auto;
+    }
+
+    .panel h2 {
+        display: none;
+    }
+
+    .card-preview {
+        background: white;
+        padding: 0;
+        margin: 0;
+        min-height: auto;
+    }
+
+    /* Print Card - 4x6 inches at 300 DPI */
+    .vtu-card {
+        width: 6in;
+        height: 4in;
+        margin: 0.5in;
+        border-radius: 0.2in;
+        padding: 0.25in;
+        box-shadow: none;
+        page-break-after: auto;
+        page-break-inside: avoid;
+        background: white !important;
+        border: 1px solid #0052CC !important;
+    }
+
+    /* Optimize for print quality */
+    .vtu-card {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+
+    .card-header {
+        margin-bottom: 0.15in;
+        padding-bottom: 0.1in;
+    }
+
+    .card-logo {
+        font-size: 1.2em;
+    }
+
+    .card-provider {
+        font-size: 0.8em;
+    }
+
+    .card-body {
+        gap: 0.1in;
+    }
+
+    .card-field {
+        padding: 0.05in 0;
+    }
+
+    .field-label {
+        font-size: 0.7em;
+    }
+
+    .field-value {
+        font-size: 0.9em;
+    }
+
+    .field-value.amount {
+        font-size: 1.1em;
+    }
+
+    .card-footer {
+        padding-top: 0.1in;
+        font-size: 0.8em;
+    }
+
+    /* Multiple card layout */
+    @page {
+        size: 8.5in 11in;
+        margin: 0.5in;
+    }
+}

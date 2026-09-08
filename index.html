@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTU Data Card Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="print.css" media="print">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>VTU Data Card Generator</h1>
+                <p>Professional Print-Ready Cards</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Panel -->
+            <section class="panel input-panel">
+                <h2>VTU Data Entry</h2>
+                <form id="vtuForm">
+                    <div class="form-group">
+                        <label for="vtuNumber">VTU Number:</label>
+                        <input type="text" id="vtuNumber" placeholder="e.g., 234812345678" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="provider">Provider:</label>
+                        <select id="provider">
+                            <option value="MTN">MTN</option>
+                            <option value="Airtel">Airtel</option>
+                            <option value="Glo">Glo</option>
+                            <option value="9mobile">9mobile</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount">Amount (₦):</label>
+                        <input type="text" id="amount" placeholder="e.g., 1000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="validity">Validity:</label>
+                        <select id="validity">
+                            <option value="7 Days">7 Days</option>
+                            <option value="30 Days">30 Days</option>
+                            <option value="90 Days">90 Days</option>
+                            <option value="365 Days">365 Days</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pin">PIN:</label>
+                        <input type="text" id="pin" placeholder="e.g., 1234-5678-9012" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="purchaseDate">Purchase Date:</label>
+                        <input type="date" id="purchaseDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="referenceNo">Reference No:</label>
+                        <input type="text" id="referenceNo" placeholder="e.g., REF123456">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" onclick="generateCard()">Generate Card</button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                        <button type="button" class="btn btn-success" onclick="printCard()">Print</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Preview Panel -->
+            <section class="panel preview-panel">
+                <h2>Card Preview</h2>
+                <div id="cardPreview" class="card-preview">
+                    <div class="vtu-card">
+                        <div class="card-header">
+                            <div class="card-logo">VTU</div>
+                            <div class="card-provider">PROVIDER</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-field">
+                                <span class="field-label">VTU Number</span>
+                                <span class="field-value" id="displayVTU">234812345678</span>
+                            </div>
+                            <div class="card-field">
+                                <span class="field-label">Amount</span>
+                                <span class="field-value amount" id="displayAmount">₦1,000</span>
+                            </div>
+                            <div class="card-field">
+                                <span class="field-label">PIN</span>
+                                <span class="field-value pin" id="displayPIN">****-****-****</span>
+                            </div>
+                            <div class="card-field">
+                                <span class="field-label">Validity</span>
+                                <span class="field-value" id="displayValidity">30 Days</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="footer-item">
+                                <span class="footer-label">Date</span>
+                                <span class="footer-value" id="displayDate">2026-09-08</span>
+                            </div>
+                            <div class="footer-item">
+                                <span class="footer-label">Ref No</span>
+                                <span class="footer-value" id="displayRef">REF123456</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Actions -->
+                <div class="preview-actions">
+                    <button type="button" class="btn btn-info" onclick="downloadPDF()">Download PDF</button>
+                    <button type="button" class="btn btn-info" onclick="downloadZIP()">Download as ZIP</button>
+                    <button type="button" class="btn btn-warning" onclick="togglePINVisibility()">Toggle PIN</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 VTU Card Generator. All rights reserved. | High Quality Print Ready | 300 DPI</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

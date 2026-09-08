@@ -1,0 +1,48 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "vtuNumber": "234812345678",
+      "provider": "MTN",
+      "amount": 1000,
+      "validity": "30 Days",
+      "pin": "1234-5678-9012",
+      "purchaseDate": "2026-09-08",
+      "referenceNo": "REF001",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "vtuNumber": "234809876543",
+      "provider": "Airtel",
+      "amount": 500,
+      "validity": "7 Days",
+      "pin": "2345-6789-0123",
+      "purchaseDate": "2026-09-07",
+      "referenceNo": "REF002",
+      "status": "Active"
+    },
+    {
+      "id": 3,
+      "vtuNumber": "234811111111",
+      "provider": "Glo",
+      "amount": 2000,
+      "validity": "90 Days",
+      "pin": "3456-7890-1234",
+      "purchaseDate": "2026-09-06",
+      "referenceNo": "REF003",
+      "status": "Active"
+    },
+    {
+      "id": 4,
+      "vtuNumber": "234822222222",
+      "provider": "9mobile",
+      "amount": 1500,
+      "validity": "30 Days",
+      "pin": "4567-8901-2345",
+      "purchaseDate": "2026-09-05",
+      "referenceNo": "REF004",
+      "status": "Active"
+    }
+  ]
+}
