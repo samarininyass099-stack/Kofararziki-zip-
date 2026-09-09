@@ -1,48 +1,58 @@
 {
   "cards": [
     {
-      "id": 1,
-      "vtuNumber": "234812345678",
+      "vtuNumber": "2348012345678",
       "provider": "MTN",
-      "amount": 1000,
+      "amount": "1000",
+      "pin": "123456789012",
       "validity": "30 Days",
-      "pin": "1234-5678-9012",
       "purchaseDate": "2026-09-08",
-      "referenceNo": "REF001",
-      "status": "Active"
+      "serialNumber": "KZD-2026-00001"
     },
     {
-      "id": 2,
-      "vtuNumber": "234809876543",
+      "vtuNumber": "2348109876543",
       "provider": "Airtel",
-      "amount": 500,
+      "amount": "500",
+      "pin": "234567890123",
       "validity": "7 Days",
-      "pin": "2345-6789-0123",
-      "purchaseDate": "2026-09-07",
-      "referenceNo": "REF002",
-      "status": "Active"
+      "purchaseDate": "2026-09-08",
+      "serialNumber": "KZD-2026-00002"
     },
     {
-      "id": 3,
-      "vtuNumber": "234811111111",
+      "vtuNumber": "2348111111111",
       "provider": "Glo",
-      "amount": 2000,
+      "amount": "2000",
+      "pin": "345678901234",
       "validity": "90 Days",
-      "pin": "3456-7890-1234",
-      "purchaseDate": "2026-09-06",
-      "referenceNo": "REF003",
-      "status": "Active"
+      "purchaseDate": "2026-09-07",
+      "serialNumber": "KZD-2026-00003"
     },
     {
-      "id": 4,
-      "vtuNumber": "234822222222",
+      "vtuNumber": "2348122222222",
       "provider": "9mobile",
-      "amount": 1500,
+      "amount": "1500",
+      "pin": "456789012345",
       "validity": "30 Days",
-      "pin": "4567-8901-2345",
+      "purchaseDate": "2026-09-06",
+      "serialNumber": "KZD-2026-00004"
+    },
+    {
+      "vtuNumber": "2348133333333",
+      "provider": "MTN",
+      "amount": "5000",
+      "pin": "567890123456",
+      "validity": "365 Days",
       "purchaseDate": "2026-09-05",
-      "referenceNo": "REF004",
-      "status": "Active"
+      "serialNumber": "KZD-2026-00005"
+    },
+    {
+      "vtuNumber": "2348144444444",
+      "provider": "Airtel",
+      "amount": "750",
+      "pin": "678901234567",
+      "validity": "14 Days",
+      "purchaseDate": "2026-09-04",
+      "serialNumber": "KZD-2026-00006"
     }
   ]
 }
