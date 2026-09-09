@@ -5,10 +5,16 @@
         color-adjust: exact !important;
     }
 
-    body {
-        background: white;
+    html, body {
         margin: 0;
         padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        background: white;
+        font-size: 12pt;
     }
 
     .container {
@@ -17,12 +23,17 @@
         margin: 0;
     }
 
-    /* Hide all input elements when printing */
+    /* Hide UI elements */
     .header,
     .input-panel,
     .form-actions,
+    .bulk-actions,
+    .import-export-section,
+    .storage-section,
     .preview-actions,
+    .card-count,
     .footer,
+    .notification-container,
     .btn {
         display: none !important;
     }
@@ -31,6 +42,7 @@
         display: block;
         margin: 0;
         padding: 0;
+        gap: 0;
     }
 
     .panel {
@@ -39,80 +51,221 @@
         padding: 0;
         background: white;
         page-break-after: auto;
+        page-break-before: auto;
     }
 
     .panel h2 {
         display: none;
     }
 
-    .card-preview {
-        background: white;
+    .preview-panel {
         padding: 0;
-        margin: 0;
+        background: transparent;
+    }
+
+    .card-preview-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5in;
+        background: white;
         min-height: auto;
+        max-height: none;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .no-card-message {
+        display: none;
     }
 
     /* Print Card - 4x6 inches at 300 DPI */
     .vtu-card {
-        width: 6in;
-        height: 4in;
-        margin: 0.5in;
-        border-radius: 0.2in;
-        padding: 0.25in;
+        width: 4in;
+        height: 2.5in;
+        margin: 0;
+        padding: 0.2in;
+        border-radius: 0.15in;
         box-shadow: none;
         page-break-after: auto;
         page-break-inside: avoid;
         background: white !important;
         border: 1px solid #0052CC !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 10pt;
+        line-height: 1.3;
+        break-inside: avoid;
     }
 
-    /* Optimize for print quality */
-    .vtu-card {
-        font-size: 12pt;
-        line-height: 1.4;
-    }
-
+    /* Card Header */
     .card-header {
-        margin-bottom: 0.15in;
-        padding-bottom: 0.1in;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.1in;
+        padding-bottom: 0.08in;
+        border-bottom: 1.5pt solid #0052CC;
     }
 
     .card-logo {
-        font-size: 1.2em;
+        font-size: 0.9em;
+        font-weight: 700;
+        color: white;
+        background: #0052CC !important;
+        padding: 4pt 6pt;
+        border-radius: 2pt;
+        letter-spacing: 0.5pt;
     }
 
     .card-provider {
         font-size: 0.8em;
+        font-weight: 700;
+        color: #003DA5;
+        letter-spacing: 1pt;
     }
 
+    /* Card Body */
     .card-body {
-        gap: 0.1in;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.08in;
     }
 
     .card-field {
-        padding: 0.05in 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4pt 0;
+        border-bottom: 0.5pt dotted #CCCCCC;
     }
 
     .field-label {
-        font-size: 0.7em;
+        font-size: 0.65em;
+        color: #666;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5pt;
     }
 
     .field-value {
-        font-size: 0.9em;
+        font-size: 0.85em;
+        font-weight: 700;
+        color: #0052CC;
+        letter-spacing: 0.5pt;
+        text-align: right;
     }
 
     .field-value.amount {
-        font-size: 1.1em;
+        font-size: 0.95em;
+        color: #003DA5;
+        font-weight: 800;
     }
 
-    .card-footer {
-        padding-top: 0.1in;
+    .field-value.pin {
+        letter-spacing: 2pt;
         font-size: 0.8em;
+        font-weight: 600;
     }
 
-    /* Multiple card layout */
+    /* Card Footer */
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 0.08in;
+        border-top: 1.5pt solid #0052CC;
+    }
+
+    .footer-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2pt;
+    }
+
+    .footer-label {
+        font-size: 0.6em;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5pt;
+        font-weight: 700;
+    }
+
+    .footer-value {
+        font-size: 0.8em;
+        font-weight: 700;
+        color: #0052CC;
+    }
+
+    /* Print Page Settings */
     @page {
         size: 8.5in 11in;
         margin: 0.5in;
+        orphans: 3;
+        widows: 3;
+    }
+
+    @page :first {
+        margin: 0.5in;
+    }
+
+    /* Multiple cards per page */
+    .vtu-card:nth-child(3n+1) {
+        page-break-before: auto;
+    }
+
+    /* Ensure proper page breaks for multiple cards */
+    .vtu-card:nth-child(odd) {
+        margin-right: 0.25in;
+    }
+
+    .vtu-card:nth-child(even) {
+        margin-left: 0.25in;
+    }
+}
+
+/* Landscape printing for larger cards */
+@media print and (orientation: landscape) {
+    .card-preview-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .vtu-card {
+        width: 3in;
+        height: 2in;
+    }
+
+    @page {
+        size: 11in 8.5in;
+        margin: 0.5in;
+    }
+}
+
+/* Large print (zoom) settings */
+@media print and (min-resolution: 300dpi) {
+    .vtu-card {
+        border-width: 2pt;
+    }
+
+    .card-header {
+        border-bottom-width: 2pt;
+    }
+
+    .card-footer {
+        border-top-width: 2pt;
+    }
+}
+
+/* Ensure text doesn't get cut off */
+@media print {
+    body {
+        orphans: 2;
+        widows: 2;
+    }
+
+    .vtu-card {
+        orphans: 3;
+        widows: 3;
     }
 }
