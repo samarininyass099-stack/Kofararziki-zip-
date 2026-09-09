@@ -1,12 +1,19 @@
 :root {
+    --primary-green: #1B7B3B;
     --primary-blue: #0052CC;
     --dark-blue: #003DA5;
     --light-blue: #E8F0FF;
     --white: #FFFFFF;
     --gray: #F5F5F5;
+    --light-gray: #EEEEEE;
+    --dark-gray: #333333;
     --text-dark: #1A1A1A;
     --text-light: #666666;
     --border: #CCCCCC;
+    --success: #28A745;
+    --warning: #FFC107;
+    --danger: #DC3545;
+    --info: #17A2B8;
 }
 
 * {
@@ -15,11 +22,16 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
     color: var(--text-dark);
     line-height: 1.6;
+    min-height: 100vh;
 }
 
 .container {
@@ -28,29 +40,50 @@ body {
     padding: 20px;
 }
 
-/* Header */
+/* ============ HEADER ============ */
 .header {
     background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
     color: white;
     padding: 40px 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-bottom: 30px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 82, 204, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 82, 204, 0.2);
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+
+.logo-icon {
+    font-size: 3em;
+    display: block;
 }
 
 .header-content h1 {
     font-size: 2.5em;
-    margin-bottom: 10px;
     font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.header-content p {
+.header-content .tagline {
     font-size: 1.1em;
-    opacity: 0.9;
+    opacity: 0.95;
+    font-weight: 300;
 }
 
-/* Main Content */
+/* ============ MAIN CONTENT ============ */
 .main-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -58,25 +91,41 @@ body {
     margin-bottom: 30px;
 }
 
-/* Panels */
+/* ============ PANELS ============ */
 .panel {
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 30px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 82, 204, 0.05);
 }
 
 .panel h2 {
     color: var(--primary-blue);
-    margin-bottom: 20px;
-    font-size: 1.5em;
+    margin-bottom: 25px;
+    font-size: 1.6em;
     border-bottom: 2px solid var(--light-blue);
-    padding-bottom: 10px;
+    padding-bottom: 12px;
+    font-weight: 700;
 }
 
-/* Form Styles */
+.panel h3 {
+    color: var(--primary-blue);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+/* ============ FORM STYLES ============ */
+.vtu-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .form-group label {
@@ -87,15 +136,25 @@ body {
     font-size: 0.95em;
 }
 
+.required {
+    color: var(--danger);
+    font-weight: 700;
+}
+
 .form-group input,
 .form-group select {
     width: 100%;
     padding: 12px;
     border: 2px solid var(--light-blue);
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 1em;
     transition: all 0.3s ease;
     font-family: inherit;
+    background-color: white;
+}
+
+.form-group input::placeholder {
+    color: #999;
 }
 
 .form-group input:focus,
@@ -103,20 +162,39 @@ body {
     outline: none;
     border-color: var(--primary-blue);
     background-color: #F0F7FF;
-    box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
+    box-shadow: 0 0 0 4px rgba(0, 82, 204, 0.1);
 }
 
-/* Buttons */
+.form-help {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85em;
+    color: var(--text-light);
+}
+
+/* ============ BUTTONS ============ */
 .btn {
     padding: 12px 24px;
     border: none;
-    border-radius: 4px;
-    font-size: 1em;
+    border-radius: 6px;
+    font-size: 0.95em;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
 }
 
 .btn-primary {
@@ -125,8 +203,7 @@ body {
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 82, 204, 0.3);
 }
 
 .btn-secondary {
@@ -140,19 +217,17 @@ body {
 }
 
 .btn-success {
-    background: #28A745;
+    background: linear-gradient(135deg, var(--success) 0%, #1e7e34 100%);
     color: white;
 }
 
 .btn-success:hover {
-    background: #218838;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
 .btn-info {
-    background: #17A2B8;
+    background: var(--info);
     color: white;
-    margin-right: 10px;
-    margin-top: 10px;
 }
 
 .btn-info:hover {
@@ -160,18 +235,27 @@ body {
 }
 
 .btn-warning {
-    background: #FFC107;
+    background: var(--warning);
     color: var(--text-dark);
-    margin-top: 10px;
 }
 
 .btn-warning:hover {
     background: #E0A800;
 }
 
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+/* ============ FORM ACTIONS ============ */
 .form-actions {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     margin-top: 30px;
 }
 
@@ -179,32 +263,95 @@ body {
     flex: 1;
 }
 
-/* Card Preview */
-.card-preview {
+.bulk-actions {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-    background: var(--gray);
-    border-radius: 4px;
-    padding: 20px;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
-/* VTU Card Design */
+.bulk-actions .btn {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* ============ IMPORT/EXPORT SECTION ============ */
+.import-export-section {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 2px solid var(--light-blue);
+}
+
+.storage-section {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 2px solid var(--light-blue);
+    padding: 20px;
+    background: var(--light-gray);
+    border-radius: 8px;
+    margin-left: -30px;
+    margin-right: -30px;
+    margin-bottom: -30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.storage-section h3 {
+    margin-top: 0;
+}
+
+.storage-info {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-size: 0.95em;
+}
+
+/* ============ CARD PREVIEW CONTAINER ============ */
+.card-preview-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 400px;
+    background: var(--light-gray);
+    border-radius: 8px;
+    padding: 30px;
+    gap: 20px;
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+.no-card-message {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px 20px;
+}
+
+.no-card-message p {
+    margin: 10px 0;
+    font-size: 1.05em;
+}
+
+.no-card-message p:first-child {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* ============ VTU CARD DESIGN ============ */
 .vtu-card {
     width: 100%;
-    max-width: 500px;
-    aspect-ratio: 1.6/1;
+    max-width: 450px;
+    aspect-ratio: 1.6 / 1;
     background: linear-gradient(135deg, var(--white) 0%, #F8FBFF 100%);
     border-radius: 12px;
-    padding: 30px;
+    padding: 25px;
     box-shadow: 0 8px 24px rgba(0, 82, 204, 0.15);
     border: 2px solid var(--light-blue);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier New', 'Courier', monospace;
     color: var(--text-dark);
+    page-break-inside: avoid;
 }
 
 /* Card Header */
@@ -212,25 +359,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
     border-bottom: 2px solid var(--primary-blue);
 }
 
 .card-logo {
-    font-size: 1.8em;
+    font-size: 1.5em;
     font-weight: 700;
-    color: var(--primary-blue);
-    background: var(--light-blue);
+    color: white;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
     padding: 8px 12px;
     border-radius: 4px;
+    letter-spacing: 1px;
 }
 
 .card-provider {
-    font-size: 0.9em;
-    font-weight: 600;
+    font-size: 0.85em;
+    font-weight: 700;
     color: var(--dark-blue);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 /* Card Body */
@@ -239,7 +387,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 .card-field {
@@ -251,76 +399,167 @@ body {
 }
 
 .field-label {
-    font-size: 0.8em;
+    font-size: 0.75em;
     color: var(--text-light);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.field-value {
-    font-size: 1.1em;
     font-weight: 700;
-    color: var(--primary-blue);
+    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+.field-value {
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--primary-blue);
+    letter-spacing: 1px;
+    text-align: right;
+}
+
 .field-value.amount {
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: var(--dark-blue);
+    font-weight: 800;
 }
 
 .field-value.pin {
-    letter-spacing: 2px;
-    font-size: 1em;
+    letter-spacing: 3px;
+    font-size: 0.95em;
+    font-weight: 600;
 }
 
 /* Card Footer */
 .card-footer {
     display: flex;
     justify-content: space-between;
-    padding-top: 15px;
+    padding-top: 12px;
     border-top: 2px solid var(--primary-blue);
 }
 
 .footer-item {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
 }
 
 .footer-label {
     font-size: 0.7em;
     color: var(--text-light);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    font-weight: 600;
 }
 
 .footer-value {
-    font-size: 0.95em;
-    font-weight: 600;
+    font-size: 0.9em;
+    font-weight: 700;
     color: var(--primary-blue);
 }
 
-/* Preview Actions */
+/* ============ PREVIEW ACTIONS ============ */
 .preview-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 20px;
+    justify-content: center;
 }
 
-/* Footer */
+.preview-actions .btn {
+    flex-shrink: 1;
+}
+
+.card-count {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.95em;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+/* ============ FOOTER ============ */
 .footer {
-    background: var(--primary-blue);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
     color: white;
     text-align: center;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 30px 20px;
+    border-radius: 12px;
     font-size: 0.9em;
+    box-shadow: 0 4px 15px rgba(0, 82, 204, 0.2);
 }
 
-/* Responsive Design */
+.footer p {
+    margin: 8px 0;
+}
+
+.footer-links {
+    font-size: 0.85em;
+    opacity: 0.9;
+}
+
+.footer-links span {
+    margin: 0 5px;
+}
+
+/* ============ NOTIFICATIONS ============ */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.notification {
+    background: white;
+    color: var(--text-dark);
+    padding: 16px 24px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 10px;
+    min-width: 250px;
+    pointer-events: auto;
+    border-left: 4px solid var(--info);
+    animation: slideIn 0.3s ease-out;
+}
+
+.notification.success {
+    border-left-color: var(--success);
+}
+
+.notification.error {
+    border-left-color: var(--danger);
+}
+
+.notification.warning {
+    border-left-color: var(--warning);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+.notification.hide {
+    animation: slideOut 0.3s ease-out;
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
 @media (max-width: 1024px) {
     .main-content {
         grid-template-columns: 1fr;
@@ -330,15 +569,40 @@ body {
 
 @media (max-width: 768px) {
     .container {
-        padding: 10px;
+        padding: 12px;
+    }
+
+    .header {
+        padding: 30px 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
     }
 
     .header-content h1 {
         font-size: 1.8em;
     }
 
+    .logo {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo-icon {
+        font-size: 2.5em;
+    }
+
+    .header-content .tagline {
+        font-size: 0.95em;
+    }
+
     .panel {
         padding: 20px;
+        border-radius: 8px;
+    }
+
+    .panel h2 {
+        font-size: 1.3em;
+        margin-bottom: 18px;
     }
 
     .form-actions {
@@ -349,7 +613,218 @@ body {
         width: 100%;
     }
 
+    .bulk-actions {
+        flex-direction: column;
+    }
+
+    .bulk-actions .btn {
+        width: 100%;
+    }
+
     .vtu-card {
+        max-width: 100%;
         padding: 20px;
+    }
+
+    .card-header {
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+    }
+
+    .card-logo {
+        font-size: 1.2em;
+        padding: 6px 10px;
+    }
+
+    .card-provider {
+        font-size: 0.75em;
+    }
+
+    .card-body {
+        gap: 10px;
+    }
+
+    .field-value {
+        font-size: 0.95em;
+    }
+
+    .field-value.amount {
+        font-size: 1.1em;
+    }
+
+    .preview-actions {
+        flex-direction: column;
+    }
+
+    .preview-actions .btn {
+        width: 100%;
+    }
+
+    .card-preview-container {
+        min-height: auto;
+        max-height: none;
+    }
+
+    .footer {
+        padding: 20px 15px;
+        font-size: 0.85em;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .footer-links span {
+        display: block;
+        margin: 0;
+    }
+
+    .notification {
+        min-width: 280px;
+        max-width: calc(100vw - 40px);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        padding: 20px 10px;
+        margin-bottom: 15px;
+    }
+
+    .header-content h1 {
+        font-size: 1.4em;
+    }
+
+    .header-content .tagline {
+        font-size: 0.9em;
+    }
+
+    .panel {
+        padding: 15px;
+    }
+
+    .panel h2 {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 14px;
+    }
+
+    .form-group label {
+        font-size: 0.9em;
+        margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-help {
+        font-size: 0.8em;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.9em;
+    }
+
+    .vtu-card {
+        padding: 15px;
+    }
+
+    .card-header {
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+    }
+
+    .card-logo {
+        font-size: 1em;
+        padding: 5px 8px;
+    }
+
+    .card-provider {
+        font-size: 0.7em;
+    }
+
+    .card-body {
+        gap: 8px;
+    }
+
+    .field-label {
+        font-size: 0.65em;
+    }
+
+    .field-value {
+        font-size: 0.9em;
+    }
+
+    .field-value.amount {
+        font-size: 1em;
+    }
+
+    .card-footer {
+        gap: 10px;
+    }
+
+    .footer-value {
+        font-size: 0.85em;
+    }
+
+    .notification {
+        min-width: 260px;
+    }
+
+    .import-export-section,
+    .storage-section {
+        margin-left: -15px;
+        margin-right: -15px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* ============ ACCESSIBILITY ============ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============ FOCUS VISIBLE ============ */
+:focus-visible {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+/* ============ PRINT PREPARATION ============ */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .container {
+        padding: 0;
+        max-width: 100%;
     }
 }
