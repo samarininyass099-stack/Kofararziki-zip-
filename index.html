@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VTU Data Card Generator</title>
+    <meta name="description" content="KofarArziki Data - Professional VTU Data Card Generator and Printing System for Nigeria">
+    <title>KofarArziki Data - VTU Card Generator</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="print.css" media="print">
 </head>
@@ -12,25 +13,39 @@
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <h1>VTU Data Card Generator</h1>
-                <p>Professional Print-Ready Cards</p>
+                <div class="logo">
+                    <span class="logo-icon">📱</span>
+                    <h1>KofarArziki Data</h1>
+                </div>
+                <p class="tagline">Professional VTU Data Card Generator</p>
             </div>
         </header>
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Input Panel -->
+            <!-- Left Panel: Form -->
             <section class="panel input-panel">
-                <h2>VTU Data Entry</h2>
-                <form id="vtuForm">
+                <h2>📝 Generate VTU Card</h2>
+                
+                <form id="vtuForm" class="vtu-form">
+                    <!-- VTU Number -->
                     <div class="form-group">
-                        <label for="vtuNumber">VTU Number:</label>
-                        <input type="text" id="vtuNumber" placeholder="e.g., 234812345678" required>
+                        <label for="vtuNumber">VTU Number <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="vtuNumber" 
+                            placeholder="e.g., 2348012345678"
+                            required
+                            aria-label="VTU Number"
+                        >
+                        <small class="form-help">11-13 digit phone number</small>
                     </div>
 
+                    <!-- Network Provider -->
                     <div class="form-group">
-                        <label for="provider">Provider:</label>
-                        <select id="provider">
+                        <label for="provider">Network Provider <span class="required">*</span></label>
+                        <select id="provider" required aria-label="Network Provider">
+                            <option value="">-- Select Provider --</option>
                             <option value="MTN">MTN</option>
                             <option value="Airtel">Airtel</option>
                             <option value="Glo">Glo</option>
@@ -38,97 +53,164 @@
                         </select>
                     </div>
 
+                    <!-- Data Amount -->
                     <div class="form-group">
-                        <label for="amount">Amount (₦):</label>
-                        <input type="text" id="amount" placeholder="e.g., 1000" required>
+                        <label for="amount">Data Amount (MB) <span class="required">*</span></label>
+                        <input 
+                            type="number" 
+                            id="amount" 
+                            placeholder="e.g., 1000"
+                            min="1"
+                            required
+                            aria-label="Data Amount in MB"
+                        >
+                        <small class="form-help">Amount in MB (e.g., 1000 = 1GB)</small>
                     </div>
 
+                    <!-- PIN -->
                     <div class="form-group">
-                        <label for="validity">Validity:</label>
-                        <select id="validity">
+                        <label for="pin">PIN (12 digits) <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="pin" 
+                            placeholder="e.g., 123456789012"
+                            maxlength="12"
+                            required
+                            aria-label="12-digit PIN"
+                        >
+                        <small class="form-help">12-digit PIN code</small>
+                    </div>
+
+                    <!-- Validity -->
+                    <div class="form-group">
+                        <label for="validity">Validity <span class="required">*</span></label>
+                        <select id="validity" required aria-label="Card Validity">
+                            <option value="">-- Select Validity --</option>
                             <option value="7 Days">7 Days</option>
+                            <option value="14 Days">14 Days</option>
                             <option value="30 Days">30 Days</option>
                             <option value="90 Days">90 Days</option>
                             <option value="365 Days">365 Days</option>
                         </select>
                     </div>
 
+                    <!-- Purchase Date -->
                     <div class="form-group">
-                        <label for="pin">PIN:</label>
-                        <input type="text" id="pin" placeholder="e.g., 1234-5678-9012" required>
+                        <label for="purchaseDate">Purchase Date <span class="required">*</span></label>
+                        <input 
+                            type="date" 
+                            id="purchaseDate" 
+                            required
+                            aria-label="Purchase Date"
+                        >
                     </div>
 
+                    <!-- Serial Number (optional) -->
                     <div class="form-group">
-                        <label for="purchaseDate">Purchase Date:</label>
-                        <input type="date" id="purchaseDate" required>
+                        <label for="serialNumber">Serial Number (optional)</label>
+                        <input 
+                            type="text" 
+                            id="serialNumber" 
+                            placeholder="e.g., KZD-2026-001"
+                            aria-label="Serial Number"
+                        >
+                        <small class="form-help">Auto-generated if left empty</small>
                     </div>
 
-                    <div class="form-group">
-                        <label for="referenceNo">Reference No:</label>
-                        <input type="text" id="referenceNo" placeholder="e.g., REF123456">
-                    </div>
-
+                    <!-- Form Actions -->
                     <div class="form-actions">
-                        <button type="button" class="btn btn-primary" onclick="generateCard()">Generate Card</button>
-                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
-                        <button type="button" class="btn btn-success" onclick="printCard()">Print</button>
+                        <button type="button" class="btn btn-primary" onclick="generateCard()" aria-label="Generate Card">
+                            ✓ Generate Card
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()" aria-label="Reset Form">
+                            ↺ Reset
+                        </button>
                     </div>
                 </form>
-            </section>
 
-            <!-- Preview Panel -->
-            <section class="panel preview-panel">
-                <h2>Card Preview</h2>
-                <div id="cardPreview" class="card-preview">
-                    <div class="vtu-card">
-                        <div class="card-header">
-                            <div class="card-logo">VTU</div>
-                            <div class="card-provider">PROVIDER</div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-field">
-                                <span class="field-label">VTU Number</span>
-                                <span class="field-value" id="displayVTU">234812345678</span>
-                            </div>
-                            <div class="card-field">
-                                <span class="field-label">Amount</span>
-                                <span class="field-value amount" id="displayAmount">₦1,000</span>
-                            </div>
-                            <div class="card-field">
-                                <span class="field-label">PIN</span>
-                                <span class="field-value pin" id="displayPIN">****-****-****</span>
-                            </div>
-                            <div class="card-field">
-                                <span class="field-label">Validity</span>
-                                <span class="field-value" id="displayValidity">30 Days</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="footer-item">
-                                <span class="footer-label">Date</span>
-                                <span class="footer-value" id="displayDate">2026-09-08</span>
-                            </div>
-                            <div class="footer-item">
-                                <span class="footer-label">Ref No</span>
-                                <span class="footer-value" id="displayRef">REF123456</span>
-                            </div>
-                        </div>
+                <!-- Import/Export Section -->
+                <div class="import-export-section">
+                    <h3>📂 Bulk Operations</h3>
+                    
+                    <div class="form-group">
+                        <label for="jsonFile">Import JSON File</label>
+                        <input 
+                            type="file" 
+                            id="jsonFile" 
+                            accept=".json"
+                            aria-label="Import JSON file"
+                        >
+                        <small class="form-help">Import multiple cards from JSON</small>
+                    </div>
+
+                    <div class="bulk-actions">
+                        <button type="button" class="btn btn-info" onclick="importJSON()" aria-label="Import JSON">
+                            ⬆ Import JSON
+                        </button>
+                        <button type="button" class="btn btn-info" onclick="downloadTemplateJSON()" aria-label="Download Template">
+                            ⬇ Template
+                        </button>
                     </div>
                 </div>
 
-                <!-- Additional Actions -->
-                <div class="preview-actions">
-                    <button type="button" class="btn btn-info" onclick="downloadPDF()">Download PDF</button>
-                    <button type="button" class="btn btn-info" onclick="downloadZIP()">Download as ZIP</button>
-                    <button type="button" class="btn btn-warning" onclick="togglePINVisibility()">Toggle PIN</button>
+                <!-- Data Storage Section -->
+                <div class="storage-section">
+                    <h3>💾 Saved Data</h3>
+                    <p class="storage-info" id="storageInfo">No saved data</p>
+                    <button type="button" class="btn btn-warning" onclick="clearStorage()" aria-label="Clear Saved Data">
+                        🗑 Clear All
+                    </button>
                 </div>
+            </section>
+
+            <!-- Right Panel: Preview & Actions -->
+            <section class="panel preview-panel">
+                <h2>🎨 Card Preview</h2>
+                
+                <div id="cardPreview" class="card-preview-container">
+                    <!-- Cards will be generated here -->
+                    <div class="no-card-message">
+                        <p>No card generated yet.</p>
+                        <p>Fill the form and click "Generate Card" to create a VTU data card.</p>
+                    </div>
+                </div>
+
+                <!-- Preview Actions -->
+                <div class="preview-actions">
+                    <button type="button" class="btn btn-success" onclick="printCards()" aria-label="Print Card">
+                        🖨 Print
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="downloadPDF()" aria-label="Download as PDF">
+                        📄 PDF
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="downloadZIP()" aria-label="Download as ZIP">
+                        📦 ZIP
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="downloadCSV()" aria-label="Download as CSV">
+                        📊 CSV
+                    </button>
+                    <button type="button" class="btn btn-warning" onclick="togglePINVisibility()" aria-label="Toggle PIN Visibility">
+                        👁 Show/Hide PIN
+                    </button>
+                </div>
+
+                <!-- Card Count -->
+                <div class="card-count" id="cardCount"></div>
             </section>
         </main>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>&copy; 2026 VTU Card Generator. All rights reserved. | High Quality Print Ready | 300 DPI</p>
+            <p>&copy; 2026 KofarArziki Data. All rights reserved. | Professional VTU Card Generator</p>
+            <p class="footer-links">
+                <span>Mobile Responsive</span> • 
+                <span>Print Ready (300 DPI)</span> • 
+                <span>Made in Nigeria 🇳🇬</span>
+            </p>
         </footer>
+
+        <!-- Notification Container -->
+        <div id="notificationContainer" class="notification-container" aria-live="polite" aria-atomic="true"></div>
     </div>
 
     <script src="script.js"></script>
